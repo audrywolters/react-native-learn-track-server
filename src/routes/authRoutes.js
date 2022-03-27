@@ -1,13 +1,20 @@
 const express = require('express')
-// if we want access to a mongo model outside of index.js, here's how you do it
 const mongoose = require('mongoose')
+// access the mongo model from index - which grabs it from models/User
 const User = mongoose.model('User')
 //
 
 const router = express.Router()
 
-router.post('/signup', (req, res) => {
-	console.log(req.body)
+router.post('/signup', async (req, res) => {
+	
+	// get the items out of the request
+	const { email, password } = req.body
+	const user = new User({ email, password })
+
+	// actually save the thing
+	await user.save()
+
 	res.send('you made a post request dear')
 })
 
