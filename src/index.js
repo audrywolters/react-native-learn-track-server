@@ -1,3 +1,5 @@
+// only require User once, here in index
+require('./models/User')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -8,7 +10,8 @@ const app = express()
 app.use(bodyParser.json())
 app.use(authRoutes)
 
-const mongoUri = 'mongodb+srv://chromaticarray:passwordpassword@cluster0.sx8ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const mongoUri =
+	'mongodb+srv://chromaticarray:passwordpassword@cluster0.sx8ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(mongoUri)
 mongoose.connection.on('connected', () => {
