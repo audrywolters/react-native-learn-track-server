@@ -1,8 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const authRoutes = require('./routes/authRoutes')
 
 const app = express()
+
+app.use(bodyParser.json())
 app.use(authRoutes)
 
 const mongoUri = 'mongodb+srv://chromaticarray:passwordpassword@cluster0.sx8ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -16,7 +19,7 @@ mongoose.connection.on('error', (err) => {
 })
 
 app.get('/', (req, res) => {
-	res.send('Hi there')
+	res.send('Hi there. App.Get recieved!')
 })
 
 app.listen(3000, () => {
