@@ -16,6 +16,7 @@ router.post('/signup', async (req, res) => {
 		// actually save the thing
 		await user.save()
 	
+		// success message
 		res.send('you made a post request dear')
 	} catch (err) {
 		// 422 is user sent invalid data
