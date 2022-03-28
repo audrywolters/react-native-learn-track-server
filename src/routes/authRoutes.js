@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 // access the mongo model from index - which grabs it from models/User
 const User = mongoose.model('User')
 //
@@ -16,8 +17,17 @@ router.post('/signup', async (req, res) => {
 		// actually save the thing
 		await user.save()
 	
-		// success message
-		res.send('you made a post request dear')
+		// make the JWT
+		// userId is the payload
+		// but the second argument is what makes it safer
+		// current key is bad! fix
+		const token = jwt.sign({ userId: user.Id }, 'MY_SECRET_KEY')
+
+		// send the JWT
+		// can condense to just ({ token })
+		// but leaving for learninging
+		res.send({ token: token })
+
 	} catch (err) {
 		// 422 is user sent invalid data
 		// AUDRY - is it ok to send 422? what if it's a different error?
