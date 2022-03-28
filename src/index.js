@@ -10,6 +10,8 @@ const app = express()
 app.use(bodyParser.json())
 app.use(authRoutes)
 
+// i know this is wrong to have user/password right in the file
+// tutorial is about to explain JWT stuff. hopefully that will move this stuff for us.
 const mongoUri =
 	'mongodb+srv://chromaticarray:passwordpassword@cluster0.sx8ve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 

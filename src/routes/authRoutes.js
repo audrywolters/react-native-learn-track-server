@@ -12,10 +12,17 @@ router.post('/signup', async (req, res) => {
 	const { email, password } = req.body
 	const user = new User({ email, password })
 
-	// actually save the thing
-	await user.save()
-
-	res.send('you made a post request dear')
+	try {
+		// actually save the thing
+		await user.save()
+	
+		res.send('you made a post request dear')
+	} catch (err) {
+		// 422 is user sent invalid data
+		// AUDRY - is it ok to send 422? what if it's a different error?
+		// err.message is not the best for a user but we're using it to debug for now
+		return res.status(422).send(err.message)
+	}
 })
 
 module.exports = router
