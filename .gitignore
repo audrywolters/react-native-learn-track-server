@@ -12,6 +12,3 @@ web-build/
 
 # macOS
 .DS_Store
-pizza.text
-src/Test_signup_and_get.pages
-pizza2.js
