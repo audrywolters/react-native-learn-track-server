@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model('User')
 
 module.exports = (req, res, next) => {
-	// authorization is a header ( use Uppercase in Postman - express downcases stuff )
+	// authorization is a header ( use Uppercase "Header" in Postman - express downcases stuff )
 	// try to grab the header's authorization prop
 	// authorization === 'Bearer asdfjlk;adsfjlk;'
 	const { authorization } = req.headers
@@ -40,7 +40,7 @@ module.exports = (req, res, next) => {
 		// since all is well, add this data to request object so rest of app has access to it
 		// psst - index is going to use this
 		req.user = user
-		
+
 		// do the next middleware or end
 		next()
 	})
