@@ -21,9 +21,10 @@ router.post('/signup', async (req, res) => {
 		// userId is the payload
 		// but the second argument is what makes it safer
 		// current key is bad! fix
-		const token = jwt.sign({ userId: user.Id }, 'MY_SECRET_KEY')
+		// Learing: check requireAuth to see where this is recieved from the frontend user
+		const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY')
 
-		// send the JWT
+		// send the JWT to the frontend
 		// can condense to just ({ token })
 		// but leaving for learninging
 		res.send({ token: token })

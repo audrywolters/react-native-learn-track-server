@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const authRoutes = require('./routes/authRoutes')
+const requireAuth = require('./middlewares/requireAuth')
 
 const app = express()
 
@@ -23,8 +24,11 @@ mongoose.connection.on('error', (err) => {
 	console.error('error connecting to mongo!', err)
 })
 
-app.get('/', (req, res) => {
-	res.send('Hi there. App.Get recieved!')
+// only allow access to this with a JWT. requrieAuth arugment is imported middleware.
+app.get('/', requireAuth, (req, res) => {
+
+	// DEBUG: send this back for testing
+	res.send(`Your email is: ${req.user.email}`)
 })
 
 app.listen(3000, () => {
