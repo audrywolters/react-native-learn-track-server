@@ -1,15 +1,19 @@
-// only require User once, here in index
+// only require User and Track once, here in index
 require('./models/User')
+require('./models/Track')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const authRoutes = require('./routes/authRoutes')
+const trackRoutes = require('./routes/trackRoutes')
 const requireAuth = require('./middlewares/requireAuth')
 
 const app = express()
 
+// associate things with our application (hook-up I guess)
 app.use(bodyParser.json())
 app.use(authRoutes)
+app.use(trackRoutes)
 
 // i know this is wrong to have user/password right in the file
 // .env file is incoming
